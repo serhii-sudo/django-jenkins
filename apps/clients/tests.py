@@ -9,4 +9,14 @@ class TestHomePageCase(TestCase):
 
     def test_template_content(self):
         response = self.client.get("/clients/data/")
+        html = response.content.decode('utf8')
+        self.assertFalse(html.startswith('<html>'))
+        self.assertIn('<title>Data</title>', html)
+        self.assertTrue(html.endswith('</html>'))
         self.assertTemplateUsed(response, "clients/data.html")
+
+
+
+
+
+
